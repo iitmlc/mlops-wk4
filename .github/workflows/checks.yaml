@@ -46,7 +46,7 @@ jobs:
 
       - name: Comment test results
         env:
-          REPO_TOKEN: ${{ secrets.MY_CUSTOM_SECRET }}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           source .venv/bin/activate
           echo "### Pytest Sanity Test Report" >> ga4_report.md
