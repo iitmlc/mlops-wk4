@@ -31,7 +31,7 @@ jobs:
       - name: Run training
         run: |
           source .venv/bin/activate
-          python src/train.py
+          python train.py
 
       - name: Run tests and save report
         run: |
