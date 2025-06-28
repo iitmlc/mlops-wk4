@@ -49,7 +49,12 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           source .venv/bin/activate
-          echo "### Pytest Sanity Test Report" >> ga4_report.md
+          echo "### GA4 Pytest Sanity Test Report" >> ga4_report.md
           echo "" >> ga4_report.md
+          echo "GA4 comment gGenerated via CML" >> ga4_report.md
+          echo "" >> ga4_report.md
+          echo "\`\`\`" >> ga4_report.md
           cat pytest_report.md >> ga4_report.md
+          echo "\`\`\`" >> ga4_report.md
+          echo "" >> ga4_report.md
           cml comment create ga4_report.md
