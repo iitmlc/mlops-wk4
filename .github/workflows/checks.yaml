@@ -1,3 +1,4 @@
+
 name: GA4 Workflow for Sanity Check
 
 on:
@@ -31,7 +32,7 @@ jobs:
       - name: Run training
         run: |
           source .venv/bin/activate
-          python src/train.py
+          python train.py
 
       - name: Run tests and save report
         run: |
@@ -45,10 +46,15 @@ jobs:
 
       - name: Comment test results
         env:
-          REPO_TOKEN: ${{ secrets.MY_CUSTOM_SECRET }}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           source .venv/bin/activate
-          echo "### Pytest Sanity Test Report" >> ga4_report.md
+          echo "### GA4 Pytest Sanity Test Report" >> ga4_report.md
           echo "" >> ga4_report.md
+          echo "GA4 comment gGenerated via CML" >> ga4_report.md
+          echo "" >> ga4_report.md
+          echo "\`\`\`" >> ga4_report.md
           cat pytest_report.md >> ga4_report.md
+          echo "\`\`\`" >> ga4_report.md
+          echo "" >> ga4_report.md
           cml comment create ga4_report.md
